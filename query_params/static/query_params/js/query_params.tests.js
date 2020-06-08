@@ -24,7 +24,7 @@ QUnit.test('modify_query(loc, params_to_remove=[], params_to_change={}) test', f
         search: '?a=1&a=2&b=3&c=OK&d=Hello,%20World!'
     };
     let path = modify_query(loc, params_to_remove=['c'], params_to_change={'a': 3, 'b': 4});
-    let expected_result = '/en/test/?d=Hello,%20World!&a=3&b=4';
+    let expected_result = '/en/test/?a=3&b=4&d=Hello,%20World!';
     assert.ok(path === expected_result, 'Passed!');
 });
 
@@ -35,7 +35,7 @@ QUnit.test('add_to_query(loc, params_to_remove=[], params_to_add={}) test', func
         search: '?a=1&a=2&b=3&c=OK&d=Hello,%20World!'
     };
     let path = add_to_query(loc, params_to_remove=['c'], params_to_add={'a': 3, 'b': 4});
-    let expected_result = '/en/test/?a=1&a=2&b=3&d=Hello,%20World!&a=3&b=4';
+    let expected_result = '/en/test/?a=1&a=2&a=3&b=3&b=4&d=Hello,%20World!';
     assert.ok(path === expected_result, 'Passed!');
 });
 

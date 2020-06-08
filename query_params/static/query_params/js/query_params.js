@@ -2,6 +2,20 @@ function construct_query_string(loc, query_params=[]) {
     // empty values will be removed
     let query_string = loc.pathname;
     let encoded_params = [];
+    query_params.sort(function(elem1, elem2) {
+        if (elem1[0] < elem2[0]) {
+            return -1;
+        } else if (elem1[0] > elem2[0]) {
+            return 1;
+        } else {
+            if (elem1[1] < elem2[1]) {
+                return -1;
+            } else if (elem1[1] > elem2[1]) {
+                return 1;
+            }
+        }
+        return 0;
+    });
     query_params.forEach(function(key_value) {
         if (typeof key_value[1] !== 'undefined') {
             encoded_params.push(encodeURI(key_value[0]) + '=' + encodeURI(key_value[1]));

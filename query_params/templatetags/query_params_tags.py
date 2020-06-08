@@ -20,6 +20,7 @@ def construct_query_string(context, query_params):
     # empty values will be removed
     query_string = context["request"].path
     if len(query_params):
+        query_params = sorted(query_params, key=lambda elem: "|".join([str(elem[0]), str(elem[1])]))
         encoded_params = urlencode([
             (key, force_str(value))
             for (key, value) in query_params if value

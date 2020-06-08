@@ -58,7 +58,7 @@ class QueryParamsTemplateTagTests(TestCase):
         )
 
         # Then we should get the template names saved in context variables
-        self.assertEquals(path, "/en/test/?a=1&amp;a=2&amp;b=3&amp;d=Hello%2C+World%21&amp;a=3&amp;b=4")
+        self.assertEquals(path, "/en/test/?a=1&amp;a=2&amp;a=3&amp;b=3&amp;b=4&amp;d=Hello%2C+World%21")
 
     def test_remove_from_query(self):
         request = self.factory.get('/en/test/?a=1&a=2&b=3&c=OK&d=Hello%2C+World%21')
