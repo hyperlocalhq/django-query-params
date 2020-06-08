@@ -1,2 +1,2 @@
 # django-query-params
-Django template tags for query string management
+Django app providing template tags for query string management
