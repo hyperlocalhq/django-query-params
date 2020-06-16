@@ -16,11 +16,11 @@ To use the template tags in templates:
 ```djangotemplate
 {% load query_params_tags %}
 
-{% modify_query [only_query_string] param_to_remove another_param_to_remove param_to_change="new-value" another_param_to_change="new-value" %}
+{% modify_query ["only_query_string"] "param_to_remove" "another_param_to_remove" param_to_change="new-value" another_param_to_change="new-value" %}
 
-{% add_to_query [only_query_string] param_to_remove another_param_to_remove param_to_add="new-value" another_param_to_add="new-value" %}
+{% add_to_query ["only_query_string"] "param_to_remove" "another_param_to_remove" param_to_add="new-value" another_param_to_add="new-value" %}
 
-{% remove_from_query [only_query_string] param_to_remove another_param_to_remove="value" %}
+{% remove_from_query ["only_query_string"] "param_to_remove" another_param_to_remove="value" %}
 ```
 
 ## JavaScript Library
@@ -69,7 +69,7 @@ Let's say the current URL is:
 ### modify_query
 
 ```djangotemplate
-{% modify_query page tag="ecological" %}
+{% modify_query "page" tag="ecological" %}
 ```
 
 will render:
@@ -79,7 +79,7 @@ will render:
 and
 
 ```djangotemplate
-{% modify_query only_query_string page tag="ecological" %}
+{% modify_query "only_query_string" "page" tag="ecological" %}
 ```
 
 will render:
@@ -89,7 +89,7 @@ will render:
 ### add_to_query
 
 ```djangotemplate
-{% add_to_query page tag="ecological" %}
+{% add_to_query "page" tag="ecological" %}
 ```
 
 will render:
@@ -99,7 +99,7 @@ will render:
 and
 
 ```djangotemplate
-{% add_to_query only_query_string page tag="ecological" %}
+{% add_to_query "only_query_string" "page" tag="ecological" %}
 ```
 
 will render:
@@ -109,7 +109,7 @@ will render:
 ### remove_from_query
 
 ```djangotemplate
-{% remove_from_query page tag="environment" %}
+{% remove_from_query "page" tag="environment" %}
 ```
 
 will render:
@@ -119,7 +119,7 @@ will render:
 and
 
 ```djangotemplate
-{% remove_from_query only_query_string page tag="environment" %}
+{% remove_from_query "only_query_string" "page" tag="environment" %}
 ```
 
 will render:
