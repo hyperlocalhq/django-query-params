@@ -16,11 +16,11 @@ To use the template tags in templates:
 ```djangotemplate
 {% load query_params_tags %}
 
-{% modify_query param_to_remove another_param_to_remove param_to_change="new-value" another_param_to_change="new-value" %}
+{% modify_query [only_query_string] param_to_remove another_param_to_remove param_to_change="new-value" another_param_to_change="new-value" %}
 
-{% add_to_query param_to_remove another_param_to_remove param_to_add="new-value" another_param_to_add="new-value" %}
+{% add_to_query [only_query_string] param_to_remove another_param_to_remove param_to_add="new-value" another_param_to_add="new-value" %}
 
-{% remove_from_query param_to_remove another_param_to_remove="value" %}
+{% remove_from_query [only_query_string] param_to_remove another_param_to_remove="value" %}
 ```
 
 ## JavaScript Library
@@ -36,7 +36,8 @@ var url1 = modify_query(
     {
         param_to_change: 'new-value',
         another_param_to_change: 'new-value'
-    }
+    },
+    only_query_string=false
 );
 
 var url2 = add_to_query(
@@ -45,7 +46,8 @@ var url2 = add_to_query(
     {
         param_to_add: 'new-value',
         another_param_to_add: 'new-value'
-    }
+    },
+    only_query_string=false
 );
 
 var url3 = remove_from_query(
@@ -53,7 +55,8 @@ var url3 = remove_from_query(
     ['param_to_remove'],
     {
         another_param_to_remove: 'value'
-    }
+    },
+    only_query_string=false
 );
 </script>
 ```
@@ -73,6 +76,16 @@ will render:
 
 `/posts/?sort=by-date&amp;tag=ecological`
 
+and
+
+```djangotemplate
+{% modify_query only_query_string page tag="ecological" %}
+```
+
+will render:
+
+`?sort=by-date&amp;tag=ecological`
+
 ### add_to_query
 
 ```djangotemplate
@@ -83,6 +96,16 @@ will render:
 
 `/posts/?sort=by-date&amp;tag=ecological&amp;tag=environment&amp;tag=sustainability`
 
+and
+
+```djangotemplate
+{% add_to_query only_query_string page tag="ecological" %}
+```
+
+will render:
+
+`?sort=by-date&amp;tag=ecological&amp;tag=environment&amp;tag=sustainability`
+
 ### remove_from_query
 
 ```djangotemplate
@@ -92,3 +115,13 @@ will render:
 will render:
 
 `/posts/?sort=by-date&amp;tag=sustainability`
+
+and
+
+```djangotemplate
+{% remove_from_query only_query_string page tag="environment" %}
+```
+
+will render:
+
+`?sort=by-date&amp;tag=sustainability`

@@ -1,6 +1,6 @@
-function construct_query_string(loc, query_params=[]) {
+function construct_query_string(loc, query_params=[], only_query_string=false) {
     // empty values will be removed
-    let query_string = loc.pathname;
+    let query_string = only_query_string? '': loc.pathname;
     let encoded_params = [];
     query_params.sort(function(elem1, elem2) {
         if (elem1[0] < elem2[0]) {
@@ -38,7 +38,7 @@ function parse_query_parameters(loc) {
 }
 
 
-function modify_query(loc, params_to_remove=[], params_to_change={}) {
+function modify_query(loc, params_to_remove=[], params_to_change={}, only_query_string=false) {
     /* Returns a link with modified current query parameters */
     let query_params = [];
     let get_data = parse_query_parameters(loc);
@@ -65,11 +65,11 @@ function modify_query(loc, params_to_remove=[], params_to_change={}) {
             query_params.push([key, params_to_change[key]]);
         }
     }
-    return construct_query_string(loc, query_params);
+    return construct_query_string(loc, query_params, only_query_string);
 }
 
 
-function add_to_query(loc, params_to_remove=[], params_to_add={}) {
+function add_to_query(loc, params_to_remove=[], params_to_add={}, only_query_string=false) {
     /* Returns a link with modified current query parameters */
     let query_params = [];
     // go through current query params..
@@ -88,11 +88,11 @@ function add_to_query(loc, params_to_remove=[], params_to_add={}) {
             query_params.push([key, params_to_add[key]]);
         }
     }
-    return construct_query_string(loc, query_params);
+    return construct_query_string(loc, query_params, only_query_string);
 }
 
 
-function remove_from_query(loc, args=[], kwargs={}) {
+function remove_from_query(loc, args=[], kwargs={}, only_query_string=false) {
     /* Returns a link with modified current query parameters */
     let query_params = [];
     // go through current query params..
@@ -108,5 +108,5 @@ function remove_from_query(loc, args=[], kwargs={}) {
             }
         }
     });
-    return construct_query_string(loc, query_params);
+    return construct_query_string(loc, query_params, only_query_string);
 }
