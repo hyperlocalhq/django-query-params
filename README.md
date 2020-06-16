@@ -71,7 +71,7 @@ Let's say the current URL is:
 
 will render:
 
-`https://example.com/posts/?sort=by-date&amp;tag=ecological`
+`/posts/?sort=by-date&amp;tag=ecological`
 
 ### add_to_query
 
@@ -81,7 +81,7 @@ will render:
 
 will render:
 
-`https://example.com/posts/?sort=by-date&amp;tag=ecological&amp;tag=environment&amp;tag=sustainability`
+`/posts/?sort=by-date&amp;tag=ecological&amp;tag=environment&amp;tag=sustainability`
 
 ### remove_from_query
 
@@ -91,4 +91,4 @@ will render:
 
 will render:
 
-`https://example.com/posts/?sort=by-date&amp;tag=sustainability`
+`/posts/?sort=by-date&amp;tag=sustainability`
