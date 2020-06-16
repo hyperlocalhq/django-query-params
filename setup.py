@@ -46,7 +46,7 @@ setup(
     include_package_data=True,
     keywords='query_params',
     name='django-query-params',
-    packages=find_packages(include=['query_params']),
+    packages=find_packages(include=['*']),
     url='https://github.com/hyperlocalhq/django-query-params',
     version='0.3.0',
     zip_safe=False,
