@@ -3,7 +3,12 @@ from __future__ import unicode_literals
 
 
 from django import template
-from django.utils.encoding import force_text
+
+try:
+    from django.utils.encoding import force_str
+except ImportError:
+    from django.utils.encoding import force_text as force_str
+
 from django.utils.safestring import mark_safe
 
 try:
@@ -22,10 +27,10 @@ def construct_query_string(context, query_params, only_query_string=False):
     query_string = "" if only_query_string else context["request"].path
     if len(query_params):
         query_params = sorted(
-            query_params, key=lambda elem: "|".join([force_text(elem[0]), force_text(elem[1])])
+            query_params, key=lambda elem: "|".join([force_str(elem[0]), force_str(elem[1])])
         )
         encoded_params = urlencode(
-            [(key, force_text(value)) for (key, value) in query_params if value]
+            [(key, force_str(value)) for (key, value) in query_params if value]
         ).replace("&", "&amp;")
         query_string += "?{encoded_params}".format(encoded_params=encoded_params)
     return mark_safe(query_string)
@@ -98,7 +103,7 @@ def remove_from_query(context, *args, **kwargs):
         if key not in args:
             for value in value_list:
                 # skip key-value pairs mentioned in kwargs
-                if not (key in kwargs and force_text(value) == force_text(kwargs[key])):
+                if not (key in kwargs and force_str(value) == force_str(kwargs[key])):
                     query_params.append((key, value))
     return construct_query_string(
         context=context, query_params=query_params, only_query_string=only_query_string
