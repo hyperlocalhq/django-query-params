@@ -48,6 +48,6 @@ setup(
     name='django-query-params',
     packages=find_packages(include=['*']),
     url='https://github.com/hyperlocalhq/django-query-params',
-    version='0.5.0',
+    version='1.0.0',
     zip_safe=False,
 )
